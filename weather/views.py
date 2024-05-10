@@ -2,6 +2,17 @@ import requests
 import datetime
 from django.shortcuts import render, redirect
 
+from dotenv import load_dotenv
+import os
+from pathlib import Path
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Support env variables from .env file if defined
+env_path = load_dotenv(os.path.join(BASE_DIR, '.env'))
+load_dotenv(env_path)
+
 
 def get_current_weather(weather_dict):
     details = {
@@ -42,7 +53,9 @@ def get_5_day_forecast(weather_dict):
 
 def index(request):
     if request.method == 'POST':
-        url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{}/next4days?unitGroup=metric&elements=datetime%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Cconditions%2Cicon&include=days%2Ccurrent&key=Z9YG7YFSAN297G7S3R3T6DMJA&contentType=json'
+        API_KEY = os.getenv('WEATHER_API_KEY')
+        url = f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{{}}/next4days?unitGroup=metric&elements=datetime%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Cconditions%2Cicon&include=days%2Ccurrent&key={
+            API_KEY}&contentType=json'
         city = request.POST.get('city', '')
         if city:
             unit = request.POST.get('unit', '')
