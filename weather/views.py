@@ -52,9 +52,9 @@ def get_5_day_forecast(weather_dict):
 
 
 def index(request):
-    if request.method == 'POST':
-        API_KEY = os.getenv('WEATHER_API_KEY')
-        url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{}/next4days?unitGroup=metric&elements=datetime%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Cconditions%2Cicon&include=days%2Ccurrent&key=Z9YG7YFSAN297G7S3R3T6DMJA&contentType=json'
+    WEATHER_API_KEY = os.getenv('WEATHER_API_KEY')
+    if request.method == 'POST':        
+        url = f'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/{{}}/next4days?unitGroup=metric&elements=datetime%2Cname%2Ctempmax%2Ctempmin%2Ctemp%2Cconditions%2Cicon&include=days%2Ccurrent&key={WEATHER_API_KEY}&contentType=json'
         city = request.POST.get('city', '')
         if city:
             unit = request.POST.get('unit', '')
