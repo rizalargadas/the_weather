@@ -1,0 +1,20 @@
+{% load static tailwind_tags %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather Forecast</title>
+		{% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+		{% tailwind_css %}
+	</head>
+	<body class="bg-blue-950">
+		<nav class="py-2 bg-blue-300">
+			<h1 class="text-3xl text-center italic">WeatherForecast</h1>
+		</nav>
+		<main>
+			{% block content %}
+			{% endblock %}
+		</main>
+	</body>
+</html>
